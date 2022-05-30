@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-4">
+                <label class="col-form-label fw-bold">Curp:</label>
+            </div>
+            <div class="col-7">
+                <input (keyup)="getAlumno()" type="text" [formControl]="curp" class="form-control">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-4">
+                <label class="col-form-label fw-bold">Nombre:</label>
+            </div>
+            <div class="col-7">
+                <input disabled="true" type="text" [value]="nombre" class="form-control">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-4">
+                <label class="col-form-label fw-bold">A Paterno:</label>
+            </div>
+            <div class="col-7">
+                <input disabled="true" type="text" [value]="aPaterno" class="form-control">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-4">
+                <label class="col-form-label fw-bold">A Materno:</label>
+            </div>
+            <div class="col-7">
+                <input disabled="true" type="text" [value]="aMaterno" class="form-control">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-4">
+                <label class="col-form-label fw-bold">Grupo:</label>
+            </div>
+            <div class="col-7">
+                <input disabled="true" type="text" class="form-control">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-4">
+                <label class="col-form-label fw-bold">Registro:</label>
+            </div>
+            <div class="col-7">
+                <select [formControl]="registro" class="form-select">
+                    <option [disabled]="btnValidarRegistro !== 1" value="Entrada">Entrada</option>
+                    <option [disabled]="btnValidarRegistro !== 2" value="Salida">Salida</option>
+                  </select>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-4">
+            </div>
+            <div class="col-7">
+                <div class="d-grid gap-2">
+                    <button (click)="establecerAsistencia()" class="btn btn-warning fw-bold" type="button">Aceptar</button>
+                  </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-2">
+                <label class="col-form-label fw-bold">Cargo:</label>
+            </div>
+            <div class="col-7">
+                <input type="text" class="form-control" value="ESTUDIANTE" disabled="true">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col" *ngIf="!curp.errors?.['minlength'] && curp.value">
+                <img src="../../../assets/fotografias/{{curp.value}}.jpg" 
+                class="img-fluid" >
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <p class="fw-bold fs-1 reloj-hora">
+            {{date}}
+        </p>
+    </div>
+</div>
