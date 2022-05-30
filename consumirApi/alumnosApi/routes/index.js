@@ -40,7 +40,7 @@ router.post('/alumnos', function (req, res) {
     const horarios = XLSX.utils.sheet_to_json(ws, { header: 1 })
 
     horarios.push([curp, hEntrada, hSalida, 0]);
-    console.log(horarios);
+    // console.log(horarios);
 
     const worksheet = XLSX.utils.aoa_to_sheet(horarios);
     const workbook = XLSX.utils.book_new();
@@ -60,7 +60,7 @@ router.post('/alumnos', function (req, res) {
     XLSX.utils.sheet_add_aoa(worksheet, [["Curp", "Entrada", "Salida", "Permanencia"]], { origin: "A1" });
     XLSX.writeFile(workbook, path.join(__dirname, 'horarios.xlsx'));
 
-    console.log('horarios creado');
+    // console.log('horarios creado');
   }
 
   res.send('Se proceso la respuesta');
@@ -80,8 +80,8 @@ router.put('/alumnos', (req, res) => {
     const ws = wb.Sheets[wsname];
     const horarios = XLSX.utils.sheet_to_json(ws, { header: 1 })
 
-    console.log("Horario Anterior");
-    console.log(horarios);
+    // console.log("Horario Anterior");
+    // console.log(horarios);
 
     horarios.map(horario => {
       if (horario[0] === registro[0] && horario[1] === registro[1] && horario[2] === registro[2]) {
@@ -99,8 +99,8 @@ router.put('/alumnos', (req, res) => {
       }
     });
 
-    console.log("Nuevos Horarios");
-    console.log(horarios);
+    // console.log("Nuevos Horarios");
+    // console.log(horarios);
     const worksheet = XLSX.utils.aoa_to_sheet(horarios);
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Datos");
@@ -109,7 +109,7 @@ router.put('/alumnos', (req, res) => {
     XLSX.writeFile(workbook, path.join(__dirname, 'horarios.xlsx'));
 
   } catch (error) {
-    console.error(error);
+    // console.error(error);
   }
 
   res.send('se actualizo los datos');
@@ -155,8 +155,8 @@ const obtenerUltimoHorario = (curp) => {
         }
       })
     }
-    console.log(listHorarios);
-    console.log(result);
+    // console.log(listHorarios);
+    // console.log(result);
     return result.length === 0 ? null : result[result.length - 1];
   } catch (error) {
     return null;
